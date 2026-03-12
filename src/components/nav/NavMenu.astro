@@ -1,0 +1,59 @@
+---
+import NavLinksList from './NavLinksList.astro';
+---
+
+<nav
+  id='nav-menu'
+  class='absolute top-22 right-8 inline-block bg-slate-800 px-16 py-10 text-center text-white'
+>
+  <NavLinksList ulClass='grid grid-cols-1 gap-8' />
+</nav>
+
+<style>
+  nav {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .menu-appear {
+    animation: appear 1s ease forwards;
+    pointer-events: auto;
+  }
+
+  .menu-disappear {
+    animation: disappear 1s ease forwards;
+  }
+
+  @keyframes appear {
+    from {
+      opacity: 0;
+      transform: none;
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(-1rem);
+    }
+  }
+
+  @keyframes disappear {
+    from {
+      opacity: 1;
+      transform: translateY(-1rem);
+    }
+
+    to {
+      opacity: 0;
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  window.addEventListener('nav:toggle', (e) => {
+    const menu = document.getElementById('nav-menu');
+    const { isOpen } = (e as CustomEvent).detail;
+    menu?.classList.toggle('menu-appear', isOpen);
+    menu?.classList.toggle('menu-disappear', !isOpen);
+  });
+</script>

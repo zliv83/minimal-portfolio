@@ -1,0 +1,27 @@
+---
+import { navLinks } from '../data/navlinks';
+import NavLink from './NavLink.astro';
+
+interface Props {
+  ulClass?: string;
+  showActive?: boolean;
+}
+
+const { ulClass, showActive } = Astro.props;
+const { pathname } = Astro.url;
+---
+
+<ul class={ulClass}>
+  {
+    navLinks.map((link) => {
+      const isActive = showActive && pathname === link.href;
+      return (
+        <li>
+          <NavLink href={link.href} class={isActive ? 'text-teal' : undefined}>
+            {link.label}
+          </NavLink>
+        </li>
+      );
+    })
+  }
+</ul>

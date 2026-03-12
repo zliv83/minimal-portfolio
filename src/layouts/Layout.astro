@@ -1,3 +1,44 @@
 ---
-$END$
+import Footer from '../components/nav/Footer.astro';
+import NavBar from '../components/nav/NavBar.astro';
+import ContactMe from '../components/ContactMe.astro';
+import '../styles/global.css';
+
+interface Props {
+  contactMe?: boolean;
+}
+
+const { contactMe = true } = Astro.props;
 ---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400..700;1,400..700&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap'
+      rel='stylesheet'
+    />
+    <meta name='generator' content={Astro.generator} />
+    <title>Minimal Portfolio</title>
+  </head>
+  <body class='bg-neutral-50 text-slate-800'>
+    <!-- Navbar -->
+    <NavBar />
+
+    <!-- Main Content -->
+    <main class='px-8 md:px-10 lg:gap-36 lg:px-40'>
+      <slot />
+
+      <!-- Contact -->
+      {contactMe && <ContactMe />}
+    </main>
+
+    <!-- Footer -->
+    <Footer />
+  </body>
+</html>

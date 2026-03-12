@@ -1,17 +1,53 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import computer from '../assets/computer.jpg';
 
+import { Image } from 'astro:assets';
+import Button from '../components/Button.astro';
+import ImageBlock from '../components/ImageBlock.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <div class='grid grid-cols-1 gap-24 pbe-24'>
+    <!-- Hero Section -->
+    <section class='relative overflow-hidden'>
+      <Image
+        src={computer}
+        class='h-auto w-full object-cover md:min-block-[600px]'
+        layout='full-width'
+        alt='A computer'
+      />
+      <div
+        class='flex flex-col gap-8 pbs-6 md:absolute md:bottom-0 md:left-0 md:bg-neutral-50 md:pe-14 md:pbs-14 lg:gap-14 lg:pe-[3.44rem] lg:pbs-[3.31rem]'
+      >
+        <h1
+          class='text-2 lg:text-1 font-Ibarra md:max-inline-[28.68rem] lg:max-inline-[24.37rem]'
+        >
+          Hey, I’m Alex Spencer and I love building beautiful websites
+        </h1>
+        <a href='#about-me'>
+          <Button variant='secondary'>About Me</Button>
+        </a>
+      </div>
+    </section>
+
+    <!-- About Me Secton -->
+    <div id='about-me'>
+      <ImageBlock
+        spencerTabletI
+        header='About Me'
+        btnText='go to portfolio'
+        link='/portfolio'
+      >
+        I’m a junior front-end developer looking for a new role in an exciting
+        company. I focus on writing accessible HTML, using modern CSS practices
+        and writing clean JavaScript. When writing JavaScript code, I mostly use
+        React, but I can adapt to whatever tools are required. I’m based in
+        London, UK, but I’m happy working remotely and have experience in remote
+        teams. When I’m not coding, you’ll find me outdoors. I love being out in
+        nature whether that’s going for a walk, run or cycling. I’d love you to
+        check out my work.
+      </ImageBlock>
+    </div>
+  </div>
+</Layout>

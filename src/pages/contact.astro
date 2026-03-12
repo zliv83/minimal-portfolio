@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Socials from '../components/Socials.astro';
+import Form from '../components/Form.astro';
+---
+
+<Layout contactMe={false}>
+  <div class='flex flex-col gap-6 pbe-16 md:gap-8'>
+    <!-- Get in touch -->
+    <div
+      class='border-divider grid grid-cols-1 gap-y-300 border-bs border-be py-400 lg:grid-cols-2'
+    >
+      <h1 class='text-2 font-Ibarra font-bold'>Get In Touch</h1>
+      <div class='flex flex-col gap-300'>
+        <p class='text-5 font-Public opcity-80'>
+          I’d love to hear about what you’re working on and how I could help.
+          I’m currently looking for a new role and am open to a wide range of
+          opportunities. My preference would be to find a position in a company
+          in London. But I’m also happy to hear about opportunites that don’t
+          fit that description. I’m a hard-working and positive person who will
+          always approach each task with a sense of purpose and attention to
+          detail. Please do feel free to check out my online profiles below and
+          get in touch using the form.
+        </p>
+        <Socials />
+      </div>
+    </div>
+
+    <!-- Form -->
+    <Form />
+  </div>
+</Layout>

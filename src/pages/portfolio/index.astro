@@ -1,0 +1,26 @@
+---
+import ImageBlock from '../../components/ImageBlock.astro';
+import Layout from '../../layouts/Layout.astro';
+
+import { projects } from '../../components/data/projects';
+---
+
+<Layout>
+  <div class='flex flex-col gap-20 pbe-24'>
+    {
+      projects.map((project) => (
+        <ImageBlock
+          imgSrc={project.previewImg}
+          alt={project.previewAlt}
+          header={project.name}
+          btnText='view project'
+          reverse={project.reverse}
+          imgClass='md:inline-[21.1875rem] md:block-[19.635rem] lg:inline-[33.75rem] lg:block-[31.25rem]'
+          link={project.link}
+        >
+          {project.description}
+        </ImageBlock>
+      ))
+    }
+  </div>
+</Layout>

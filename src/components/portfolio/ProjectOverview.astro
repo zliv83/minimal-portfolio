@@ -1,0 +1,28 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  js?: boolean;
+}
+
+const { name, description, js } = Astro.props;
+
+import Button from '../Button.astro';
+---
+
+<article
+  class='border-divider grid grid-cols-1 gap-6 border-bs border-be py-6 md:grid-cols-2 md:grid-rows-[auto_auto_auto] lg:grid-cols-1 lg:grid-rows-none'
+>
+  <h1 class='font-Ibarra text-2 order-1 font-bold md:order-0 lg:order-1'>{name}</h1>
+  <p
+    class='text-5 font-Public order-2 opacity-80 md:order-0 md:col-start-2 md:row-span-3 md:row-start-1 md:self-center lg:order-2 lg:col-start-auto lg:row-span-1 lg:row-start-auto lg:self-auto'
+  >
+    {description}
+  </p>
+  <p class='text-6 font-Public text-teal order-3 font-bold md:order-0 lg:order-3'>
+    Interaction Design / Front End Development
+    <br />
+    HTML / CSS <span class={js ? 'inline' : 'hidden'}>/ JS</span>
+  </p>
+  <Button class='order-4 md:order-0 lg:order-4' variant='outline'>visit website</Button>
+</article>

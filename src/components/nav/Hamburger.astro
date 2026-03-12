@@ -1,0 +1,157 @@
+<div class='gap-hamburger flex flex-col items-center justify-center'>
+  <div id='top-bun' class='burger'></div>
+  <div id='patty' class='burger'></div>
+  <div id='bottom-bun' class='burger'></div>
+</div>
+
+<style>
+  .gap-hamburger {
+    --duration: 0.6s;
+    --delay: 0.4s;
+    --border-height: 1px;
+    --translateY: calc(var(--spacing-hamburger) + var(--border-height));
+  }
+
+  .burger {
+    border-bottom: var(--border-height) solid var(--color-slate-800);
+    min-inline-size: 1.5rem;
+  }
+
+  .top-bun--open {
+    animation:
+      moveDown var(--duration) ease forwards,
+      rotateTop var(--duration) ease var(--delay) forwards;
+  }
+
+  .top-bun--close {
+    animation:
+      unRotateTop var(--duration) ease forwards,
+      moveBackUp var(--duration) ease var(--delay) forwards;
+  }
+
+  .patty--open {
+    animation: hidePatty 0.01s linear var(--delay) forwards;
+  }
+
+  .patty--close {
+    animation: unHidePatty 0.01s linear var(--duration) both;
+  }
+
+  .bottom-bun--open {
+    animation:
+      moveUp var(--duration) ease forwards,
+      rotateBottom var(--duration) ease var(--delay) forwards;
+  }
+
+  .bottom-bun--close {
+    animation:
+      unRotateBottom var(--duration) ease forwards,
+      moveBackDown var(--duration) ease var(--delay) forwards;
+  }
+
+  @keyframes moveDown {
+    from {
+      transform: none;
+    }
+
+    to {
+      transform: translateY(var(--translateY));
+    }
+  }
+
+  @keyframes moveBackDown {
+    from {
+      transform: translateY(calc(var(--translateY) * -1));
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  @keyframes moveUp {
+    from {
+      transform: none;
+    }
+    to {
+      transform: translateY(calc(var(--translateY) * -1));
+    }
+  }
+
+  @keyframes moveBackUp {
+    from {
+      transform: translateY(var(--translateY));
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  @keyframes hidePatty {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes unHidePatty {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes rotateTop {
+    from {
+      transform: translateY(var(--translateY)) rotate(0deg);
+    }
+    to {
+      transform: translateY(var(--translateY)) rotate(45deg);
+    }
+  }
+
+  @keyframes unRotateTop {
+    from {
+      transform: translateY(var(--translateY)) rotate(45deg);
+    }
+    to {
+      transform: translateY(var(--translateY)) rotate(0deg);
+    }
+  }
+
+  @keyframes rotateBottom {
+    from {
+      transform: translateY(calc(var(--translateY) * -1)) rotate(0deg);
+    }
+    to {
+      transform: translateY(calc(var(--translateY) * -1)) rotate(-45deg);
+    }
+  }
+
+  @keyframes unRotateBottom {
+    from {
+      transform: translateY(calc(var(--translateY) * -1)) rotate(-45deg);
+    }
+    to {
+      transform: translateY(calc(var(--translateY) * -1)) rotate(0deg);
+    }
+  }
+</style>
+
+<script>
+  const topBun = document.getElementById('top-bun');
+  const patty = document.getElementById('patty');
+  const bottomBun = document.getElementById('bottom-bun');
+  window.addEventListener('nav:toggle', (e) => {
+    const { isOpen } = (e as CustomEvent).detail;
+    topBun?.classList.toggle('top-bun--open', isOpen);
+    topBun?.classList.toggle('top-bun--close', !isOpen);
+    patty?.classList.toggle('patty--open', isOpen);
+    patty?.classList.toggle('patty--close', !isOpen);
+    bottomBun?.classList.toggle('bottom-bun--open', isOpen);
+    bottomBun?.classList.toggle('bottom-bun--close', !isOpen);
+  });
+</script>

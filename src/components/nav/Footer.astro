@@ -1,0 +1,21 @@
+---
+import Socials from '../Socials.astro';
+import NavLinksList from './NavLinksList.astro';
+import LogoWhite from '../../assets/icons/logo-white.svg';
+---
+
+<footer
+  class='grid grid-cols-1 place-items-center gap-y-10 bg-slate-800 px-8 py-14 md:grid-cols-[auto_auto_1fr] md:gap-x-4 md:px-300 md:py-6 lg:px-40'
+>
+  <a href='/'>
+    <LogoWhite />
+  </a>
+  <nav class='text-white'>
+    <NavLinksList
+      ulClass='grid grid-cols-1 gap-y-400 text-center md:grid-cols-[repeat(3,auto)] md:gap-x-4'
+    />
+  </nav>
+  <div class='md:justify-self-end'>
+    <Socials white />
+  </div>
+</footer>

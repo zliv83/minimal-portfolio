@@ -1,0 +1,73 @@
+---
+interface Props {
+  spencerTabletI?: boolean;
+  reverse?: boolean;
+  imgClass?: string;
+  imgSrc?: ImageMetadata;
+  alt?: string;
+  header: string;
+  btnText: string;
+  link: string;
+}
+const {
+  spencerTabletI,
+  reverse,
+  imgClass,
+  imgSrc,
+  alt,
+  header,
+  btnText,
+  link,
+} = Astro.props;
+
+// Spencer
+import { getImage, Image } from 'astro:assets';
+import spencer from '../assets/spencer.jpg';
+import spencerTablet from '../assets/spencer-tablet.jpg';
+import Button from './Button.astro';
+
+const optimizedSpencerTablet = spencerTabletI
+  ? await getImage({ src: spencerTablet })
+  : null;
+---
+
+<section
+  class='grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center md:gap-20'
+>
+  <!-- Image slot -->
+  <div
+    class=`relative overflow-hidden  ${reverse ? 'md:order-2' : 'md:order-1'} ${imgClass ?? ''}`
+  >
+    {
+      spencerTabletI ? (
+        <picture>
+          <source
+            media='(min-width: 768px) and (max-width: 1023px)'
+            srcset={optimizedSpencerTablet!.src}
+          />
+          <Image
+            src={spencer}
+            alt='Alex Spenser'
+            class='h-full w-full object-cover'
+          />
+        </picture>
+      ) : (
+        <Image src={imgSrc!} alt={alt!} class='object-fit h-full w-full' />
+      )
+    }
+  </div>
+  <!-- Text section -->
+  <article
+    class=`${reverse ? 'md:order-1' : 'md:order-2'} lg:self-stretch lg:flex-1 gap-6 py-13 border-be border-bs border-divider flex flex-col ${imgClass ? 'justify-center' : ''} lg:max-inline-[21.88rem]`
+  >
+    <h2 class='text-2 font-Ibarra'>
+      {header}
+    </h2>
+    <p class='text-4 lg:text-5 opacity-80'>
+      <slot />
+    </p>
+    <a href={link}>
+      <Button variant='outline'>{btnText}</Button>
+    </a>
+  </article>
+</section>

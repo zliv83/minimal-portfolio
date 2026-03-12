@@ -1,0 +1,47 @@
+---
+import FormField from './FormField.astro';
+import Button from './Button.astro';
+---
+
+<form class='grid w-full grid-cols-1 gap-y-8 lg:grid-cols-2'>
+  <legend class='text-2 font-Ibarra'>Contact Me</legend>
+  <div class='field-box grid-cols grid md:gap-y-0.75'>
+    <FormField label='Name' forName='name' placeholder='Jane Appleseed' />
+    <FormField
+      label='Email Address'
+      forName='email'
+      placeholder='email@example.com'
+    />
+    <FormField
+      label='Message'
+      forName='message'
+      placeholder='How can I help?'
+      textArea
+    />
+  </div>
+  <Button id='form-button' class='lg:col-start-2'>send message</Button>
+</form>
+
+<script>
+  let elements: [HTMLInputElement, HTMLInputElement, HTMLTextAreaElement] = [
+    document.getElementById('name') as HTMLInputElement,
+    document.getElementById('email') as HTMLInputElement,
+    document.getElementById('message') as HTMLTextAreaElement,
+  ];
+  let button = document.getElementById('form-button') as HTMLButtonElement;
+
+  function handleSubmission(e: Event) {
+    e.preventDefault();
+    for (let i = 0; i < elements.length; i++) {
+      if (!elements[i].checkValidity()) {
+        elements[i].dataset.error = '';
+        elements[i].nextElementSibling?.classList.remove('invisible');
+      } else {
+        delete elements[i].dataset.error;
+        elements[i].nextElementSibling?.classList.add('invisible');
+      }
+    }
+  }
+
+  button.addEventListener('click', handleSubmission);
+</script>

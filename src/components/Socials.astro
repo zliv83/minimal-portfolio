@@ -1,0 +1,32 @@
+---
+import Github from '../assets/icons/socials/github.svg';
+import X from '../assets/icons/socials/x.svg';
+import Linkedin from '../assets/icons/socials/linkedin.svg';
+
+interface Props {
+  white?: boolean;
+}
+
+const { white } = Astro.props;
+
+const socials = [
+  { href: 'https://www.github.com', Icon: Github, label: 'GitHub' },
+  { href: 'https://www.x.com', Icon: X, label: 'X' },
+  { href: 'https://www.linkedin.com', Icon: Linkedin, label: 'LinkedIn' },
+];
+---
+
+<div class:list={['flex gap-200', { 'text-white': white }]}>
+  {
+    socials.map(({ href, Icon, label }) => (
+      <a
+        href={href}
+        aria-label={label}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        <Icon height={24} width={24} />
+      </a>
+    ))
+  }
+</div>

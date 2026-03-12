@@ -1,0 +1,64 @@
+---
+interface Props extends astroHTML.JSX.HTMLAttributes {
+  textArea?: boolean;
+  label: string;
+  forName: string;
+  type?: astroHTML.JSX.HTMLInputTypeAttribute;
+  placeholder: string;
+}
+const {
+  textArea,
+  label,
+  forName,
+  type = 'text',
+  placeholder,
+  ...rest
+} = Astro.props;
+---
+
+<div class='grid w-full grid-cols-1 gap-100' {...rest}>
+  <label class='text-6 font-bold' for={forName}>{label}</label>
+  {
+    textArea ? (
+      <textarea
+        class='field h-24'
+        id={forName}
+        name={forName}
+        placeholder={placeholder}
+        autocomplete='on'
+        required
+      />
+    ) : (
+      <input
+        class='field'
+        id={forName}
+        name={forName}
+        type={type}
+        placeholder={placeholder}
+        required
+      />
+    )
+  }
+  <span class='error-msg text-red text-8 invisible italic'
+    >This field is required</span
+  >
+</div>
+
+<style>
+  @reference "../styles/global.css";
+  .field {
+    /* layout */
+    @apply text-6 resize-none py-2 ps-4;
+    /* default (filled) state */
+    @apply border-teal border bg-neutral-50 text-slate-800;
+    /* empty state */
+    @apply placeholder:text-slate-800/50 placeholder-shown:border-transparent placeholder-shown:bg-slate-800/10;
+    /* focus */
+    @apply focus:outline-none;
+    /* error */
+
+    &[data-error] {
+      @apply border-red;
+    }
+  }
+</style>

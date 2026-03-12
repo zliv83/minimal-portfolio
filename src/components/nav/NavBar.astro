@@ -1,3 +1,38 @@
 ---
-$END$
+import Hamburger from './Hamburger.astro';
+import NavLinksList from './NavLinksList.astro';
+import NavMenu from './NavMenu.astro';
+import Logo from '../../assets/icons/logo-black.svg';
 ---
+
+<header class='group relative z-50'>
+  <div
+    class='grid grid-cols-2 items-center justify-between p-8 md:px-10 md:py-16 lg:px-40'
+  >
+    <a href='/'>
+      <Logo />
+    </a>
+    <div class='justify-self-end'>
+      <nav class='text-slate-800'>
+        <NavLinksList
+          ulClass='hidden md:grid md:grid-flow-col md:gap-x-10'
+          showActive
+        />
+      </nav>
+      <button id='menu-toggle' class='md:hidden'>
+        <Hamburger />
+      </button>
+    </div>
+  </div>
+  <NavMenu />
+</header>
+
+<script>
+  import { navState } from '../scripts/navState';
+
+  const button = document.getElementById('menu-toggle');
+
+  button?.addEventListener('click', () => {
+    navState.toggle();
+  });
+</script>

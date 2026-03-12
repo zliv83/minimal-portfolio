@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+import ProjectOverview from '../../components/portfolio/ProjectOverview.astro';
+import PortfolioNav from '../../components/portfolio/PortfolioNav.astro';
+import { projects } from '../../components/data/projects';
+import Layout from '../../layouts/Layout.astro';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.name.toLowerCase() },
+    props: { projectData: project },
+  }));
+}
+
+const {
+  heroImg,
+  heroAlt,
+  name,
+  description,
+  js,
+  projectBackground,
+  previewImg,
+  previewAlt,
+  previewImg2,
+  previewAlt2,
+  lastPageName,
+  lastPageHref,
+  nextPageName,
+  nextPageHref,
+} = Astro.props.projectData;
+---
+
+<Layout>
+  <div class='grid grid-cols-1 gap-8 pbe-8 lg:gap-16 lg:pbe-29'>
+    <Image src={heroImg} alt={heroAlt} />
+    <div
+      class='grid grid-cols-1 gap-x-32 gap-y-8 lg:grid-cols-[21.87rem_39.69rem] lg:items-start lg:pbs-12'
+    >
+      <ProjectOverview {name} {description} {js} />
+      <div class='flex flex-col gap-8'>
+        <div id='project-background' class='flex flex-col gap-8'>
+          <h2 class='text-3 font-Ibarra'>Project Background</h2>
+          <p class='text-5 font-Public opacity-80'>
+            {projectBackground}
+          </p>
+        </div>
+        <div id='static-previews' class='flex flex-col gap-8'>
+          <h2 class='text-3 font-Ibarra'>Static Previews</h2>
+          <Image src={previewImg} alt={previewAlt} />
+          <Image src={previewImg2} alt={previewAlt2} />
+        </div>
+      </div>
+    </div>
+    <PortfolioNav {lastPageName} {lastPageHref} {nextPageName} {nextPageHref} />
+  </div>
+</Layout>

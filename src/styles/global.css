@@ -1,0 +1,79 @@
+@import 'tailwindcss';
+
+* {
+  font-feature-settings:
+    'liga' off,
+    'clig' off;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@theme {
+  /* Colors */
+  --color-neutral-950: hsl(0 0% 0%);
+  --color-neutral-100: hsl(0 0% 96%);
+  --color-neutral-50: hsl(0 0% 98%);
+  --color-slate-800: hsl(254 10% 22%);
+  --color-slate-400: hsl(243 10% 64%);
+  --color-slate-300: hsl(310 3% 84%);
+  --color-indigo-600: hsl(231 64% 58%);
+  --color-indigo-500: hsl(231 70% 60%);
+  --color-blue: hsl(205 41% 21%);
+  --color-blue-darkend: hsl(205 41% 19%);
+  --color-teal: hsl(167 36% 54%);
+  --color-teal-darkend: hsl(167 36% 49%);
+  --color-sky: hsl(193 62% 54%);
+  --color-linen: hsl(9 10% 96%);
+  --color-red: hsl(0 90% 57%);
+  --color-divider: hsl(254 10% 22% / 0.15);
+
+  /* Fonts */
+  --font-Ibarra: 'Ibarra Real Nova', serif;
+  --font-Public: 'Public Sans', sans-serif;
+
+  /* Text */
+  --text-1: 3.125rem;
+  --text-1--letter-spacing: -0.028rem;
+  --text-1--font-weight: bold;
+
+  --text-2: 40px;
+  --text-2--line-height: 1.05;
+  --text-2--letter-spacing: -0.022rem;
+  --text-2--font-weight: bold;
+
+  --text-3: 2rem;
+  --text-3--line-height: 1.3;
+  --text-3--letter-spacing: 0.019rem;
+
+  --text-4: 1rem;
+  --text-4--line-height: 1.875;
+
+  --text-5: 0.938rem;
+  --text-5--line-height: 2;
+
+  --text-6: 0.813rem;
+  --text-6--line-height: 2.3;
+
+  --text-7: 0.75rem;
+  --text-7--line-height: 1.15;
+  --text-7--letter-spacing: 0.125rem;
+
+  --text-8: 0.625rem;
+  --text-8--line-height: 1.2;
+  --text-8--font-weight: bold;
+
+  /* Spacing */
+  --spacing-100: 0.5rem;
+  --spacing-150: 0.75rem;
+  --spacing-200: 1rem;
+  --spacing-300: 1.5rem;
+  --spacing-375: 1.875rem;
+  --spacing-400: 2rem;
+  --spacing-500: 2.5rem;
+  --spacing-600: 3rem;
+  --spacing-700: 3.5rem;
+  --spacing-1000: 5rem;
+  --spacing-hamburger: 0.38rem;
+}
